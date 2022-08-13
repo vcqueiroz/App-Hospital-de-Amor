@@ -1,2 +1,2 @@
 # App Hospital de Amor
-Web and Mobile Application.
+Web Application.
