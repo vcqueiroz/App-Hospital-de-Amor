@@ -13,7 +13,7 @@ export class UserFormComponent implements OnInit {
   users: Array<User> = [];
 
   constructor(private fb: FormBuilder, private userService: UserService) {
-    this.userForm = this.fb.group({
+    this.userForm = this.fb.group ({
       id: 0,
       nome: '',
       sobrenome: '',
@@ -35,8 +35,8 @@ export class UserFormComponent implements OnInit {
 
   createuser() {
     this.userForm.get('id')?.patchValue(this.users.length + 1);
-    this.userService.postUser(this.userForm.value).subscribe(result => {
-      console.log(`Usuário ${result.nome} ${result.sobrenome} foi cadastrado com sucesso!`);
+    this.userService.postUser(this.userForm.value).subscribe(response => {
+      console.log(response.nome);
     })
   }
 }

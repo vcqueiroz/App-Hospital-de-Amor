@@ -4,5 +4,5 @@ export interface User {
     sobrenome: string,
     idade: number,
     telefone: string,
-    cidade: string,
+    cidade: string
 }
