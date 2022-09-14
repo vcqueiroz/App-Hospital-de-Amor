@@ -8,7 +8,7 @@ import { User } from '../models/user';
 })
 export class UserService {
   apiUrl = 'https://api.steinhq.com/v1/storages/63042ee2bc148508ba88f149/Página1';
-  
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json',
@@ -23,18 +23,18 @@ export class UserService {
   }
 
   //Salva o paciente no banco CREATE
-  postUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.apiUrl, user, this.httpOptions);
+  postUser(user: any) {
+    return this.httpClient.post(this.apiUrl, user, this.httpOptions);
   }
 
   //Excluir o paciente no banco DELETE
-  deleteUser(id:number): Observable<User> {
-    return this.httpClient.delete<User>(`${this.apiUrl}/${id}`);
+  deleteUser(id: string) {
+    return this.httpClient.delete<User[]>(`${this.apiUrl}?search={"id":"${[id]}"}`);
   }
 
   // Edita usuario UPDATE
-  updateUser(id: string, user: User):Observable<User> {
-    return this.httpClient.put<User>(`${this.apiUrl}/id/${id}`, user, this.httpOptions);
+  updateUser(id: string, user: User) {
+    return this.httpClient.put(`${this.apiUrl}/id/${id}`, user, this.httpOptions);
   }
 
   // Lista usuario unico
