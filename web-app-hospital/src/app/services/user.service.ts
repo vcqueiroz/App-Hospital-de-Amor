@@ -29,7 +29,7 @@ export class UserService {
 
   //Excluir o paciente no banco DELETE
   deleteUser(id: string) {
-    return this.httpClient.delete<User[]>(`${this.apiUrl}?search={"id":"${[id]}"}`);
+    return this.httpClient.delete(`${this.apiUrl}?search={"id":"${[id]}"}`);
   }
 
   // Edita usuario UPDATE
