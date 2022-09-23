@@ -7,11 +7,11 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl = 'https://api.steinhq.com/v1/storages/63042ee2bc148508ba88f149/Página1';
+  apiUrl = 'https://sheet.best/api/sheets/808f8080-50bd-4ebf-9741-02a166bdc8c5';
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type' : 'application/json',
+      'Content-Type' : 'application/json'
     })
   }
 
@@ -19,7 +19,7 @@ export class UserService {
 
   //Retorna a lista de pacientes READ
   getUsers():Observable<User[]> {
-    return this.httpClient.get<User[]>(this.apiUrl);
+    return this.httpClient.get<User[]>(this.apiUrl, this.httpOptions);
   }
 
   //Salva o paciente no banco CREATE
@@ -29,10 +29,10 @@ export class UserService {
 
   //Excluir o paciente no banco DELETE
   deleteUser(id: string) {
-    return this.httpClient.delete(`${this.apiUrl}?search={"id":"${[id]}"}`);
+      return this.httpClient.delete(`${this.apiUrl}/id/${id}`);
   }
 
-  // Edita usuario UPDATE
+  //Edita usuario UPDATE
   updateUser(id: string, user: User) {
     return this.httpClient.put(`${this.apiUrl}/id/${id}`, user, this.httpOptions);
   }

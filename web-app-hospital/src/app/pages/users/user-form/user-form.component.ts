@@ -57,8 +57,8 @@ export class UserFormComponent implements OnInit {
 
   createUser() {
     this.userForm.get('id')?.patchValue(this.users.length + 1);
-    this.userService.postUser([this.userForm.value]).subscribe(result => {
-      console.log(`Usuario ${result} foi cadastrado com sucesso !`)
+    this.userService.postUser(this.userForm.value).subscribe(result => {
+      console.log(`Paciente ${result} foi cadastrado com sucesso !`)
     }, (err) => {
 
     }, () => {
@@ -68,7 +68,7 @@ export class UserFormComponent implements OnInit {
 
   updateUser() {
     this.userService.updateUser(this.userId, this.userForm.value).subscribe(result => {
-      console.log('usuario atualizado', result);
+      console.log('Paciente atualizado', result);
     }, (err) => {
 
     }, () => {

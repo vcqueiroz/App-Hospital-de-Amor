@@ -31,13 +31,13 @@ export class UsersListComponent implements OnInit {
     this.userService.getUsers().subscribe(response => {
       this.users = response;
     }, (err) => {
-      console.log('ERRO AO EXECUTAR', err.status);
+      console.log('Erro ao Executar', err.status);
     })
   }
 
   deleteUser(id: string): void {
-    this.userService.deleteUser((id)).subscribe(response => {
-      console.log('Usuario Excluido');
+    this.userService.deleteUser(id).subscribe(response => {
+      console.log('Paciente Excluido');
     }, (err) => {
       console.log(err)
     }, () => {
