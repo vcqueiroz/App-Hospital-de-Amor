@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-form',
@@ -11,12 +12,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserFormComponent implements OnInit {
   userForm: FormGroup;
-  users: Array<User> = [];
+  users: User[] = [];
   userId: any = '';
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
     private actRoute: ActivatedRoute,
+    private location: Location,
     private router: Router) {
     this.userForm = this.fb.group({
       id: 0,
@@ -35,12 +37,12 @@ export class UserFormComponent implements OnInit {
       if(this.userId !== null) {
         this.userService.getUser(this.userId).subscribe(result => {
           this.userForm.patchValue({
-            id: result[0].id,
-            nome: result[0].nome,
-            sobrenome: result[0].sobrenome,
-            idade: result[0].idade,
-            telefone: result[0].telefone,
-            cidade: result[0].cidade
+            id: result.id,
+            nome: result.nome,
+            sobrenome: result.sobrenome,
+            idade: result.idade,
+            telefone: result.telefone,
+            cidade: result.cidade
           })
         })
       }
@@ -66,14 +68,14 @@ export class UserFormComponent implements OnInit {
     })
   }
 
-  updateUser() {
-    this.userService.updateUser(this.userId, this.userForm.value).subscribe(result => {
-      console.log('Paciente atualizado', result);
-    }, (err) => {
+  updateUser():void {
+    if (this.users) {
+      this.userService.updateUser(this.userForm.value).subscribe(() => this.goBack())
+    }
+  }
 
-    }, () => {
-      this.router.navigate(['/']);
-    })
+  goBack(): void {
+    this.location.back();
   }
 
   actionButton() {

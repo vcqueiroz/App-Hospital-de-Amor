@@ -7,38 +7,38 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl = 'https://sheet.best/api/sheets/808f8080-50bd-4ebf-9741-02a166bdc8c5';
-
+  private apiUrl = 'api/users';  // URL to web api
+  
   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type' : 'application/json'
-    })
-  }
+    headers: new HttpHeaders({'Content-Type' : 'application/json'})
+  };
 
   constructor(private httpClient: HttpClient) { }
 
   //Retorna a lista de pacientes READ
   getUsers():Observable<User[]> {
-    return this.httpClient.get<User[]>(this.apiUrl, this.httpOptions);
+    return this.httpClient.get<User[]>(this.apiUrl)
   }
 
   //Salva o paciente no banco CREATE
-  postUser(user: any) {
-    return this.httpClient.post(this.apiUrl, user, this.httpOptions);
+  postUser(user: User):Observable<User[]> {
+    return this.httpClient.post<User[]>(this.apiUrl, user, this.httpOptions);
   }
 
   //Excluir o paciente no banco DELETE
-  deleteUser(id: string) {
-      return this.httpClient.delete(`${this.apiUrl}/id/${id}`);
+  deleteUser(id: number) {
+    const url = `${this.apiUrl}/${id}`;
+    return this.httpClient.delete<User>(url);
   }
 
   //Edita usuario UPDATE
-  updateUser(id: string, user: User) {
-    return this.httpClient.put(`${this.apiUrl}/id/${id}`, user, this.httpOptions);
+  updateUser(user: User):Observable<any> {
+    return this.httpClient.put(this.apiUrl, user, this.httpOptions);
   }
 
   // Lista usuario unico
-  getUser(id: string):Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.apiUrl}/id/${id}`)
+  getUser(id: number):Observable<User> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.httpClient.get<User>(url);
   }
 }

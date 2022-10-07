@@ -1,7 +1,7 @@
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-users-list',
@@ -9,18 +9,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-  users: Array<User> = [];
-  userForm: FormGroup;
+  users: User[] = [];
 
   constructor(private userService: UserService, private fb: FormBuilder) { 
-    this.userForm = this.fb.group({
-      id: 0,
-      nome: '',
-      sobrenome: '',
-      idade: '',
-      telefone: '',
-      cidade: ''
-    })
+    
    }
 
   ngOnInit(): void {
@@ -28,15 +20,17 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.getUsers().subscribe(response => {
+    this.userService.getUsers().subscribe((response) => {
+      console.log(response);
       this.users = response;
     }, (err) => {
       console.log('Erro ao Executar', err.status);
     })
   }
 
-  deleteUser(id: string): void {
-    this.userService.deleteUser(id).subscribe(response => {
+  deleteUser(user: User): void {
+    this.users = this.users.filter(h => h !== user);
+    this.userService.deleteUser(user.id).subscribe(response => {
       console.log('Paciente Excluido');
     }, (err) => {
       console.log(err)

@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
-            <td>{{ user.id }}</td>
+            <td>{{ user.id }}</td> 
             <td>{{ user.nome }}</td>
             <td>{{ user.sobrenome }}</td>
             <td>{{ user.idade }}</td>
@@ -27,7 +27,7 @@
               <button class="btn btn-primary" [routerLink]="['/form', user.id]">Editar</button>
             </td>
             <td>
-              <button class="btn btn-danger" (click)="deleteUser(user.id)">Excluir</button>
+              <button class="btn btn-danger" (click)="deleteUser(user)">Excluir</button>
             </td>
           </tr>
         </tbody>
