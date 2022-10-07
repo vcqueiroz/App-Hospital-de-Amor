@@ -29,7 +29,7 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUser(user: User): void {
-    this.users = this.users.filter(h => h !== user);
+    this.users = this.users.filter(u => u !== user);
     this.userService.deleteUser(user.id).subscribe(response => {
       console.log('Paciente Excluido');
     }, (err) => {

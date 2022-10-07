@@ -68,7 +68,7 @@ export class UserFormComponent implements OnInit {
     })
   }
 
-  updateUser():void {
+  saveUser():void {
     if (this.users) {
       this.userService.updateUser(this.userForm.value).subscribe(() => this.goBack())
     }
@@ -80,7 +80,7 @@ export class UserFormComponent implements OnInit {
 
   actionButton() {
     if(this.userId !== null) {
-      this.updateUser()
+      this.saveUser()
     }else {
       this.createUser()
     }
