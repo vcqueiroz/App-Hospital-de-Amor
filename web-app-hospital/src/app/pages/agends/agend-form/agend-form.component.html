@@ -1,0 +1,47 @@
+<div class="card w-100 my-5">
+    <div class="card-body">
+      <h1 class="card-title text-center">Formulário de Agendamento</h1>
+      <form [formGroup]="userForm">
+        <div class="row my-4">
+          <div class="col-6">
+            <div class="form-floating">
+              <input type="date" class="form-control" formControlName="data" id="data">
+              <label for="data">Data</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-floating">
+              <input type="time" class="form-control" formControlName="hora" id="hora">
+              <label for="hora">Hora</label>
+            </div>
+          </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-6">
+            <div class="form-floating">
+              <input type="text" class="form-control" formControlName="atendimento" id="atendimento" placeholder="Selecione o atendimento">
+              <label for="atendimento">Atendimento</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-floating">
+              <input type="text" class="form-control" formControlName="departamento" id="departamento" placeholder="Selecione o departamento">
+              <label for="departamento">Departamento</label>
+            </div>
+          </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" formControlName="pavilhão" id="pavilhão" placeholder="Selecione o pavilhão">
+                  <label for="pavilhão">Pavilhão</label>
+                </div>
+              </div>
+            <div class="form-group col-12 mt-4">
+                <button type="button" class="btn btn-outline-danger float-start" (click)="goBack()">Cancelar</button>
+                <button type="button" class="btn btn-outline-success float-end" >Enviar</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>

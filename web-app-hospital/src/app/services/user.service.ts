@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -40,5 +40,14 @@ export class UserService {
   getUser(id: number):Observable<User> {
     const url = `${this.apiUrl}/${id}`;
     return this.httpClient.get<User>(url);
+  }
+
+  searchUsers(term: string): Observable<User[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.httpClient.get<User[]>(`${this.apiUrl}/?nome=${term}`);
+    
   }
 }

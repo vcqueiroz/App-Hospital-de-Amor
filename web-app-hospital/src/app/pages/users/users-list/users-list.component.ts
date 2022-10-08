@@ -39,4 +39,9 @@ export class UsersListComponent implements OnInit {
     })
   }
 
+  /*searchUser() {
+    this.userService.getUser().subscribe(response => {
+      this.users = response;
+    })
+  }*/
 }

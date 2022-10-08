@@ -10,13 +10,19 @@ import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { AgendListComponent } from './pages/agends/agend-list/agend-list.component';
+import { AgendFormComponent } from './pages/agends/agend-form/agend-form.component';
+import { AtendListComponent } from './pages/atend/atend-list/atend-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UsersListComponent,
-    UserFormComponent
+    UserFormComponent,
+    AgendListComponent,
+    AgendFormComponent,
+    AtendListComponent
   ],
   imports: [
     BrowserModule,
